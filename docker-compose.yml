@@ -10,8 +10,8 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     ports:
-      - "5432:5432"  # Explicit port exposure
-    healthcheck:  # Added health check
+      - "5432:5432"  
+    healthcheck:  
       test: ["CMD-SHELL", "pg_isready -U postgres -d tasks"]
       interval: 5s
       timeout: 5s
@@ -25,13 +25,13 @@ services:
       - "8080:8080"
     environment:
       DB_HOST: db
-      DB_PORT: 5432  # Added missing environment variables
+      DB_PORT: 5432  
       DB_USER: postgres
       DB_PASSWORD: root
       DB_NAME: tasks
     depends_on:
       db:
-        condition: service_healthy  # Wait for healthy DB
+        condition: service_healthy  
     networks:
       - todo-network
 

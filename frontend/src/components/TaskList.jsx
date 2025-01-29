@@ -8,7 +8,7 @@ export default function TaskList({ tasks, onTaskComplete, apiUrl }) {
             setCompletingTasks(prev => new Set([...prev, taskId]));
             
             const response = await fetch(`${apiUrl}/tasks/${taskId}/complete`, {
-                method: 'PATCH', // Changed from PUT to PATCH
+                method: 'PATCH', 
                 headers: { 'Content-Type': 'application/json' }
             });
 
@@ -18,7 +18,7 @@ export default function TaskList({ tasks, onTaskComplete, apiUrl }) {
 
             const result = await response.json();
             if (result.success) {
-                onTaskComplete(); // Refresh the task list
+                onTaskComplete(); 
                 alert('Task completed successfully!');
             }
         } catch (error) {
